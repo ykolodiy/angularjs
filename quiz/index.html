@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html ng-app="myQuiz">
+<head>
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="css/quiz.css">
+</head>
+<body>
+
+<div id="myQuiz" ng-controller="QuizController">
+		<h1>Test Your Knowledge: <span>vata li ya?</span></h1>
+		<div class="progress"> 
+		<div class="{{ ($index === activeQuestion) ? 'on' : 'off' }}"   ng-repeat="myQuestion in myQuestions"></div>
+
+
+		</div>
+
+
+		<div class="intro {{(activeQuestion > -1) ? 'inactive' : 'active'}}">
+			<h2>Welcome </h2>
+			<p>Click begin to start test</p>
+			<p class="btn" ng-click="activeQuestion = 0">Begin</p>
+		</div>
+
+
+
+		<div class="question answered
+					{{ $index === activeQuestion ? 'active' : 'inactive'}}
+		" ng-repeat="myQuestion in myQuestions">
+
+					<p class="txt">{{myQuestion.question}}</p>
+					
+					<p class="ans" 
+					ng-click="selectAnswer($parent.$index, $index)"
+
+					ng-repeat="Answer in myQuestions[$index].answers">
+
+					{{Answer.text}}
+
+					</p>
+					
+        
+					
+
+				<div class="feedback">
+					<p>You are <strong>correct</strong></p>
+					<p>Ooops its not  <strong>not correct</strong></p>
+					<p>Additional feedback</p>
+					<div class="btn">Continue</div>
+				</div>
+
+		</div>
+
+
+		<div class="results">
+			<h3>Results</h3>
+			<p>You scored x% by corectly answering X of the total X questions.</p>
+			<p>use the links below to challenge your friends</p>
+			<div class="share">
+				<a class="btn email"  href="#">Email</a>
+				<a class="btn twitter"  href="#">Tweet</a>
+
+
+			</div>
+
+
+
+		</div>
+
+
+
+
+
+</div>
+
+
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script>
+<script type="text/javascript" src="js/quiz.js"></script>
+</body>
+</html>
