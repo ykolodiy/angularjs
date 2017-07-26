@@ -1,1 +1,56 @@
-d
+
+<html ng-app="controllerExample">
+
+<head>
+	<title>ang</title>
+	<script src='angular.js'></script>
+   <script src="app8.js"></script>
+</head>
+<body >
+
+
+
+
+<div ng-controller="SettingsController2 as ctrl">
+<button ng-hide="ctrl.EditMode" ng-click="ctrl.consolelogg()">log</button>
+
+	<div>
+	<p>Add to do:</p>
+	<input type="text" name="todo" ng-model="ctrl.newTodo">
+	</div>
+	<button ng-click="ctrl.AddnewTodo()">Add</button>
+
+
+
+<button ng-hide="ctrl.EditMode" ng-click="ctrl.trigerEditMode()">Edit</button>
+<button ng-show="ctrl.EditMode" ng-click="ctrl.trigerEditMode()">Done</button>
+
+
+
+
+
+	<ol>
+		<li ng-repeat="todo in ctrl.todos track by $index">   		 
+
+<span ng-hide="ctrl.EditMode"  ng-bind="todo"></span>
+		<input ng-model="todo" ng-show="ctrl.EditMode" type="text" name="edit">
+		<button ng-hide="ctrl.EditMode" ng-click="ctrl.deleteTodo($index)">delete</button>
+
+
+
+		</li>
+	</ol>
+
+
+
+
+
+
+</div>
+
+
+
+
+
+</body>
+</html>
